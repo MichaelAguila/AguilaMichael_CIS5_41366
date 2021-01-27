@@ -1,32 +1,43 @@
-#include <iostream>
+/* 
+ * File:   main.cpp
+ * Author: Dr. Mark E. Lehr
+ * Created on July 21, 2020, 7:37 PM
+ * Purpose:  Determine if a number is Prime
+ */
 
+//System Libraries
+#include <iostream>
+#include <iomanip>
+#include <cmath>
 using namespace std;
 
-int main()
-{
-    //declare and initialize variables we need
-    int userInt, totalSum = 0;
+//Global Constants only
+//Math, Physics, Conversions, Higher Order Dimension 
 
-    //prompt user to enter input then read
-    cout << "Enter a positive integer number: ";
-    cin >> userInt;
+//Function Prototypes
+bool isPrime(int);
 
-    //while loop to validate input
-    while(userInt <= 0){
-        cout << "Only positive integers accepted! ";
-        cout << "Try again: ";
-        cin >> userInt;
+//Execution Begins Here
+int main(int argc, char** argv) {
+    //Set random number seed
+    
+    //Declare all variables
+    int nLoop=1000;
+    
+    //Display Outputs
+    for(int i=1;i<=nLoop;i++){
+        cout<<i<<" is "<<(isPrime(i)?"Prime":"not Prime")<<endl;
     }
 
-    //for loop to add numbers together
-    for(int i = 1; i <= userInt; i++){
-        totalSum += i;
-    }
-
-    //display result
-    cout << "The sum of the numbers from 1 to ";
-    cout << userInt << " is " << totalSum;
-
-    //return 0 to mark successful termination
+    //Exist Stage Right
     return 0;
+}
+
+bool isPrime(int n){
+    if(n<=1)return false;
+    if(n==2)return true;
+    for(int test=2;test<=sqrt(n);test++){
+        if(n%test==0)return false;
+    }
+    return true;
 }
